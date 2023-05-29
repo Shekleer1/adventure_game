@@ -145,7 +145,7 @@ Attack --> {Link.get('attack')}''')
         Link.increase('defence', 2)
         print(f'''Wadeing through endless labyrints of an old dungeon, you suddenly realize there's might be a danger ahed.
 Why else there're so many bone's lie's all over?...
-After quick look around, you've decided to pick up a round hoplite shield, which fortunately fortunately lay near.
+After quick look around, you've decided to pick up a round hoplite shield, which fortunately lay near.
 Health --> {Link.get('health')}
 Defence --> {Link.get('defence')}''')
 
