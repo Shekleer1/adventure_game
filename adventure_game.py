@@ -23,8 +23,6 @@ Now you got to choose whith way should you go...''')
         except ValueError:
             print("Invalid input. Please enter a number.")
 
-
-
 def laboratory():
     print(f'''Within the timeworn laboratory's dim-lit chambers, arcane contraptions stood dormant, their purpose shrouded in mystery.
 Cracked vials and faded parchments adorned the cluttered tables, remnants of forgotten experiments that echoed with the whispers of forgotten sorcery.''')
@@ -92,8 +90,6 @@ The other look's like a barracks door''')
         except ValueError:
             print('Invalid input. Please enter a number.')
 
-
-
 def rope_bridge():
     print('''Deep within the heart of a cavernous abyss, a fragile rope bridge spanned the darkness.
 Dim torchlight flickered, revealing stalactites that dripped with anticipation.
@@ -130,10 +126,6 @@ Echoes of clashing blades and resolute shouts reverberated, echoing through the 
         except ValueError:
             print('Invalid input. Please enter a number.')
 
-
-
-
-
 def barracks():
     print('''Within the cavern's embrace, a makeshift barracks stood as a haven for weary warriors.
 Flickering torches cast dancing shadows upon stone walls adorned with tattered banners.
@@ -161,10 +153,52 @@ Haunting eyes pierced the darkness, revealing a tortured soul bound to the morta
         except ValueError:
             print("Invalid input. Please enter a number.")
 
+def empty_room():
+    print(f'''Within the cavern's depths, an empty room awaited discovery.
+A solitary round table, weathered and worn, stood as a relic of forgotten gatherings.
+Shadows whispered secrets as if time itself held its breath, waiting for the return of forgotten lore.''')
+    while True:
+        try:
+            choice = input(f'''On a table you found a small flask with a green mixture. Looking healthy right?
+1. Try a taste 2. Pass away ==> ''')
+            if choice == 1:
+                bridge_poison_calc(0, 1)
+                while True:
+                    try:
+                        choice = input(f'''After this small adventture you leed to the exit
+1. Giant room 2. Small shadow room''')
+                        if choice == 1:
+                            return 'Arena'
+                        elif choice == 2:
+                            return 'small room'
+                        else:
+                            print('Invalid choice. Please enter 1 or 2.')
+                    except ValueError:
+                        print('Invalid choice. Please enter 1 or 2.')
+            elif choice == 2:
+                print("what a will. but i assume it's for better")
+            else:
+                print('Invalid choice. Please enter 1 or 2.')
+        except ValueError:
+            print("Invalid input. Please enter a number.")
 
-
-
-
-
-
-
+def Arena():
+    print(f'''Nestled deep within the cave's heart, an arena of destiny emerged.
+The air crackled with anticipation as colossal stone pillars framed the battleground.
+Spectators of fate watched in awe, their hearts pounding with the echoes of impending clash between hero and monstrous foe.''')
+    print('''Right in it's centre you see a giant figure this fight will be the last!''' )
+    input('')
+    fight(Link, Ganon)
+    if Link.get('health') > 0:
+        input('')
+        print('''You finally pass through all bariers in a way to this.''')
+        input('')
+        print(f'''Within the hidden recesses of the cave, a room adorned with gleaming treasure unfolded.
+    Golden jewels and ancient artifacts shimmered, casting a mesmerizing radiance.
+    Whispers of greed and awe intertwined as adventurers beheld the riches that stirred their desires.''')
+        input('')
+        print('...The End...')
+    else:
+        print(f'''That was a rough fight, and no one killed the beast before. So didn't our hero...''')
+        input('')
+        print('...The End...')
