@@ -96,8 +96,8 @@ def bridge_poison_calc(bridge, poison):
         i = random.randint(0, 100)
         if i <= 70:
             alligator_sleep_calc(0, 1)
-        elif i > 70:
-            return
+        else:
+            print(f'''\nWhat a taste''')
 
 def alligator_sleep_calc(alligator, sleep):
     if alligator == 1:
@@ -118,7 +118,7 @@ Your Health --> {Link.get('health')}''')
         if i <= 15:
             Link.decrease('defence', 1)
             print(f"\nIt wasn't a heal potion, rather some kind of nasty ogre secretions.\nAfter vomiting you lied down and lost consciousness.\nYour Defence --> {Link.get('defence')}")
-        elif i >= 83:
+        elif i > 82:
             Link.decrease('health', 1)
             print(f"\nYep, it was poison...")
             if Link.get('health') > 0:
@@ -128,13 +128,13 @@ Your Health --> {Link.get('health')}''')
             elif Link.get('health') < 1:
                 print(f"That was a damn good poison, best of what you've tried so far.")
         else:
-            print("Not bad, it even reminded you taste of a beer in a local tavern down the street. It wasn't poison. What a relief!")
+            print("\nNot bad, it even reminded you taste of a beer in a local tavern down the street. It wasn't poison. What a relief!")
         
 def weapon_shield(weapon, shield):
     if weapon == 1:
         Link.increase('health', 4)
         Link.increase('attack', 2) 
-        print(f'''You've been gazing into the void of the room when suddenly something starts sparking behind the rock.
+        print(f'''\nYou've been gazing into the void of the room when suddenly something starts sparking behind the rock.
 It's an old sword, a silent witness of days gone by.
 As you pick it up, you feel its heavy weight, and the might of all its previous owners fills your arms.
 You obtain a power that you couldn't even imagine before
@@ -143,7 +143,7 @@ Attack --> {Link.get('attack')}''')
     if shield == 1:
         Link.increase('health', 4)
         Link.increase('defence', 2)
-        print(f'''Wadeing through endless labyrints of an old dungeon, you suddenly realize there's might be a danger ahed.
+        print(f'''\nWadeing through endless labyrints of an old dungeon, you suddenly realize there's might be a danger ahed.
 Why else there're so many bone's lie's all over?...
 After quick look around, you've decided to pick up a round hoplite shield, which fortunately lay near.
 Health --> {Link.get('health')}
@@ -204,4 +204,160 @@ def fight(aggressor, victim):
             print(f"{victim.get('name')}'s menacing presence faltered as he fell to his knees, his once formidable strength fading.\nWith a pained groan, darkness claimed him, his reign of terror extinguished.")
             input('')
             return True
+
+def entrance():
+    print(f'''In the depths of the ancient cave, shadows danced upon weathered stone walls. 
+Whispering echoes told tales of forgotten realms.
+A mystical aura enveloped the air, beckoning brave souls to uncover its secrets and face the perils within.
+You see a giant passage which leads you in dark depth, ahed.''')
+    input('')
+    print(f'''You've alredy take's your way to a passage when suddenly, a small hole in a wall got in to your sigtht.
+You lean against it and saw a room full of bottles and beakers. Looks like an alchemy lab.
+Aquaring too much presure to the wall, make's it crumbling and soonly collapsed under your waight.
+Now you got to choose whith way should you go...''')
+    input('')
+    while True:
+        try:
+            choice = int(input('1. Take the way through an old cave passage.\n2. Enter laboratory\nYou choose ==> '))
+            if choice == 1:
+                return 'passage'
+            elif choice == 2:
+                return 'lab'
+            else:
+                print('Invalid choice. Please enter 1 or 2.')
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+def laboratory():
+    print(f'''\nWithin the timeworn laboratory's dim-lit chambers, arcane contraptions stood dormant, their purpose shrouded in mystery.
+Cracked vials and faded parchments adorned the cluttered tables, remnants of forgotten experiments that echoed with the whispers of forgotten sorcery.''')
+    input('')
+    print(f'''Beneath a pile of an old rusty equioment you see a flacon with a bright red substance, seems a result of an old experiment.''')
+    while True:
+        try:  
+            choice = int(input("1. Take a potion\n2. Not risk it\nYou choose ==> "))
+            if choice == 1:
+                print("As the healing potion touched their lips, renewed vigor surged within.")
+                Link.increase('health', 3)
+                print(f"Your Health ==> {Link.get('health')}")
+                input('')
+                break
+            elif choice == 2:
+                print("It's better not to play with such ansient magic. Good choice.")
+                input('')
+                break
+            else:
+                print('Invalid choice. Please enter 1 or 2.')
+        except ValueError:
+            print('Invalid input. Please enter a number.')
+    
+def armory():
+    print(f'''\nIn the dusty recesses of the ancient armory, rows of rusted weapons stood sentinel.
+A lingering scent of valor and battles long past permeated the air.
+Shields adorned with heraldry bore witness to a bygone era of knights and conquest.''')
+    weapon_shield(0,1)
+    input('')
+    print(f'''From an armory there's 2 way's out. One of which lead to the next room, apear as trainee field.
+The other look's like a barracks door''')
+
+def rope_bridge():
+    print('''\nDeep within the heart of a cavernous abyss, a fragile rope bridge spanned the darkness.
+Dim torchlight flickered, revealing stalactites that dripped with anticipation.
+Each cautious step echoed, harmonizing with the distant whispers of forgotten spirits lurking in the shadows''')
+    while True:
+        try:
+            choice = int(input('''\nDo you dare to trespass? \n1. Go ahed \n2. Turn back \nYou choose ==> '''))
+            if choice == 1:
+                bridge_poison_calc(1, 0)
+                return 'trespass'
+            elif choice == 2: 
+                return 'go back'
+            else:
+                print("Invalid choice. Please enter 1 or 2.")
+        except ValueError:
+            print('Invalid input. Please enter a number.')
+
+def trainee_field():
+    print(f'''\nIn the hidden recesses of the cave, a training field emerged, bathed in a mystical glow.
+Novice warriors honed their skills amidst rugged terrain, guided by seasoned masters.
+Echoes of clashing blades and resolute shouts reverberated, echoing through the hallowed chambers.
+''')
+    input('')
+    weapon_shield(1, 0)
+    input('')
+
+def barracks():
+    print('''\nWithin the cavern's embrace, a makeshift barracks stood as a haven for weary warriors.
+Flickering torches cast dancing shadows upon stone walls adorned with tattered banners.
+Tense whispers of camaraderie mingled with the distant rumblings of imminent conflict.''')
+    input('')
+    print(f'''In the heart of the chamber, a spectral knight stood, his ethereal armor gleaming with an otherworldly light.
+Haunting eyes pierced the darkness, revealing a tortured soul bound to the mortal realm, forever guarding ancient secrets with a spectral sword at the ready.''')
+    input('')
+    hp = Link.get('health')
+    if fight(Link, Ghost_knight):
+        Link.set('health', hp)
+        print("\nAfter a fight, Link falls into a deep sleep and restores his HP.")
+        weapon_shield(1, 0)
+    else:
+        print("R.I.P Link")
+
+def empty_room():
+    print(f'''\nWithin the cavern's depths, an empty room awaited discovery.
+A solitary round table, weathered and worn, stood as a relic of forgotten gatherings.
+Shadows whispered secrets as if time itself held its breath, waiting for the return of forgotten lore.''')
+    while True:
+        try:
+            choice = int(input(f'''\nOn a table you found a small flask with a green mixture. Looking healthy right?\n1. Try a taste \n2. Pass away \nYou choose ==> '''))
+            if choice == 1:
+                bridge_poison_calc(0, 1)
+                print(f'''After this small adventture you leed to the exit''')
+                break
+            elif choice == 2:
+                print("\nWhat a will. but i assume it's for the better")
+                break            
+            else:
+                print('Invalid choice. Please enter 1 or 2.')
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+def arena():
+    print(f'''\nNestled deep within the cave's heart, an arena of destiny emerged.
+The air crackled with anticipation as colossal stone pillars framed the battleground.
+Spectators of fate watched in awe, their hearts pounding with the echoes of impending clash between hero and monstrous foe.''')
+    input('')
+    print('''Right in it's centre you see a giant figure this fight will be the last!''' )
+    input('')
+    fight(Link, Ganon)
+    if Link.get('health') > 0:
+        print('''You finally pass through all bariers in a way to this.''')
+        input('')
+        print(f'''Within the hidden recesses of the cave, a room adorned with gleaming treasure unfolded.
+Golden jewels and ancient artifacts shimmered, casting a mesmerizing radiance.
+Whispers of greed and awe intertwined as adventurers beheld the riches that stirred their desires.''')
+        input('')
+        print('...The End...')
+    else:
+        print(f'''That was a rough fight, and no one killed the beast before. So didn't our hero...''')
+        input('')
+        print('...The End...')
+
+def make_choice(first_option, second_option):
+    while True:
+        try:    
+            print(f'''\nNow you got 2 options: \n1. {first_option} \n2. {second_option}''')
+            choice = int(input("You choose ==> "))
+            if choice == 1:
+                return first_option
+            elif choice == 2:
+                return second_option
+            else:
+                print("Invalid choice. Please enter 1 or 2.")
+        except ValueError:
+            print('Invalid input. Please enter a number.')
+
+
+
+
+
 
