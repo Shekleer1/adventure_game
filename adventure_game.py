@@ -1,7 +1,7 @@
 from adventure_game_functions import*
 
 
-print(f'''\nWelcome Hero!\nYour Stats:\nHP ==> {Link.get('health')}\nAttack ==> {Link.get('atack')}\nDef. ==> {Link.get('defence')}''')
+print(f'''\nWelcome Hero!\nYour Stats:\nHP ==> {Link.get('health')}\nAttack ==> {Link.get('attack')}\nDef. ==> {Link.get('defence')}''')
 print('''\nYou enter the Cave to defete a demonic evil terorise this lands for past 10 years''')
 input('')
 
